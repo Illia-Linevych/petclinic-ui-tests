@@ -1,13 +1,13 @@
 import { test, chromium, Page, expect } from '@playwright/test';
 import Pages from '../pages';
 
-test.describe('Check owner functionality', () => {
+test.describe.serial('Check owner functionality', () => {
   let page: Page;
   let pages: Pages;
 
   test.beforeAll(async () => {
     const browser = await chromium.launch();
-    const context = await browser.newContext({ recordVideo: { dir: 'videos/' } });
+    const context = await browser.newContext(/*{ recordVideo: { dir: 'videos/' } }*/);
     page = await context.newPage();
     pages = new Pages(page);
   });
@@ -20,7 +20,7 @@ test.describe('Check owner functionality', () => {
     await test.step('Click on the "Owner" menu item', async () => {
       const ownerTab = await pages.getMenuComponent().getOwnerTab();
       await ownerTab.click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
   });
 
@@ -28,7 +28,7 @@ test.describe('Check owner functionality', () => {
     await test.step('Click on the "Add new" menu item', async () => {
       const createOwnerLink = await pages.getMenuComponent().getCreateOwnerLink();
       await createOwnerLink.click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify that "Add owner" button is disabled', async () => {
@@ -64,7 +64,7 @@ test.describe('Check owner functionality', () => {
     await test.step('Click on the "Add Owner" button', async () => {
       const addOwnerButton = await pages.getCreateOwnerPage().getAddOwnerButton();
       await addOwnerButton.click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify that last owner in the list is recently created owner', async () => {
@@ -88,13 +88,13 @@ test.describe('Check owner functionality', () => {
     await test.step('Select owner with a name "OwnerName OwnerLastName"', async () => {
       const ownerNameLinks = await pages.getOwnerListPage().getOwnerNameLinksByName('OwnerName OwnerLastName');
       await ownerNameLinks.last().click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Click on "Edit Owner" button', async () => {
       const editOwnerButton = await pages.getOwnerDetailsPage().getEditOwnerButton();
       await editOwnerButton.click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Change the current address to "Address 1234"', async () => {
@@ -115,7 +115,7 @@ test.describe('Check owner functionality', () => {
     await test.step('Click on "Update Owner" button', async () => {
       const updateOwnerButton = await pages.getEditOwnerPage().getUpdateOwnerButton();
       await updateOwnerButton.click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify that the data of owner was changed', async () => {

@@ -8,7 +8,7 @@ test.describe.serial('Check visit functionality', () => {
 
   test.beforeAll(async () => {
     const browser = await chromium.launch();
-    const context = await browser.newContext({ recordVideo: { dir: 'videos/' } });
+    const context = await browser.newContext(/*{ recordVideo: { dir: 'videos/' } }*/);
     page = await context.newPage();
     pages = new Pages(page);
   });
@@ -31,7 +31,7 @@ test.describe.serial('Check visit functionality', () => {
     await test.step(`Select owner with a name "OwnerName OwnerLastName"`, async () => {
       const ownerNameLinks = await pages.getOwnerListPage().getOwnerNameLinksByName('OwnerName OwnerLastName');
       await ownerNameLinks.last().click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
   });
 
@@ -56,7 +56,7 @@ test.describe.serial('Check visit functionality', () => {
     await test.step('Select the last visit in the list and click on the "Edit Visit" button', async () => {
       const editVisitButtons = await pages.getOwnerDetailsPage().getEditVisitButtons();
       await editVisitButtons.last().click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Change the visit description to "New visit1"', async () => {
@@ -67,7 +67,7 @@ test.describe.serial('Check visit functionality', () => {
     await test.step('Click on the "Update Visit" button', async () => {
       const updateVisitButton = await pages.getEditVisitPage().getUpdateVisitButton();
       await updateVisitButton.click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify that the data of visit was changed', async () => {
@@ -88,7 +88,7 @@ test.describe.serial('Check visit functionality', () => {
     await test.step('Select the last visit in the list and click on the "Delete Visit" button', async () => {
       const deleteVisitButtons = await pages.getOwnerDetailsPage().getDeleteVisitButtons();
       await deleteVisitButtons.last().click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify that the count of visits decreased by 1', async () => {

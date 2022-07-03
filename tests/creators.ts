@@ -5,7 +5,7 @@ export async function createPet(page: Page, pages: Pages, name: string, birthDat
   await test.step(`Click on the "Add New Pet" button`, async () => {
     const addNewPetButton = await pages.getOwnerDetailsPage().getAddNewPetButton();
     await addNewPetButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 
   await test.step(`Input the pet name: ${name}`, async () => {
@@ -26,7 +26,7 @@ export async function createPet(page: Page, pages: Pages, name: string, birthDat
   await test.step(`Click on the "Save Pet" button`, async () => {
     const savePetButton = await pages.getCreatePetPage().getSavePetButton();
     await savePetButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 }
 
@@ -34,7 +34,7 @@ export async function createVisit(page: Page, pages: Pages, date: string, descri
   await test.step(`Select the last pet in the list and click on the "Add Visit" button`, async () => {
     const addVisitButtons = await pages.getOwnerDetailsPage().getAddVisitButtons();
     await addVisitButtons.last().click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 
   await test.step(`Select the visit date: ${date}`, async () => {
@@ -50,7 +50,7 @@ export async function createVisit(page: Page, pages: Pages, date: string, descri
   await test.step(`Click on the "Add visit" button`, async () => {
     const addVisitButton = await pages.getCreateVisitPage().getAddVisitButton();
     await addVisitButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 }
 
@@ -58,7 +58,7 @@ export async function createVet(page: Page, pages: Pages, firstName: string, las
   await test.step('Click on the "Add new" menu item', async () => {
     const createVetLink = await pages.getMenuComponent().getCreateVetLink();
     await createVetLink.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 
   await test.step(`Input the vet first name: ${firstName}`, async () => {
@@ -79,7 +79,7 @@ export async function createVet(page: Page, pages: Pages, firstName: string, las
   await test.step('Click on the "Save Vet" button', async () => {
     const saveVetButton = await pages.getCreateVetPage().getSaveVetButton();
     await saveVetButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 }
 
@@ -87,7 +87,7 @@ export async function createPetType(page: Page, pages: Pages, name: string) {
   await test.step('Click on the "Add" button', async () => {
     const addButton = await pages.getPetTypeListPage().getAddButton();
     await addButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 
   await test.step(`Input the pet type name: ${name}`, async () => {
@@ -98,7 +98,7 @@ export async function createPetType(page: Page, pages: Pages, name: string) {
   await test.step('Click on the "Save" button', async () => {
     const saveButton = await pages.getPetTypeListPage().getSaveButton();
     await saveButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 }
 
@@ -106,7 +106,7 @@ export async function createSpecialty(page: Page, pages: Pages, name: string) {
   await test.step('Click on the "Add" button', async () => {
     const addButton = await pages.getSpecialtyListPage().getAddButton();
     await addButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 
   await test.step(`Input the specialty name: ${name}`, async () => {
@@ -117,6 +117,6 @@ export async function createSpecialty(page: Page, pages: Pages, name: string) {
   await test.step('Click on the "Save" button', async () => {
     const saveButton = await pages.getSpecialtyListPage().getSaveButton();
     await saveButton.click();
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(2000);
   });
 }

@@ -8,7 +8,7 @@ test.describe.serial('Check pet functionality', () => {
 
   test.beforeAll(async () => {
     const browser = await chromium.launch();
-    const context = await browser.newContext({ recordVideo: { dir: 'videos/' } });
+    const context = await browser.newContext(/*{ recordVideo: { dir: 'videos/' } }*/);
     page = await context.newPage();
     pages = new Pages(page);
   });
@@ -31,7 +31,7 @@ test.describe.serial('Check pet functionality', () => {
     await test.step('Select owner with a name "OwnerName OwnerLastName"', async () => {
       const ownerNameLinks = await pages.getOwnerListPage().getOwnerNameLinksByName('OwnerName OwnerLastName');
       await ownerNameLinks.last().click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
   });
 
@@ -52,10 +52,12 @@ test.describe.serial('Check pet functionality', () => {
   });
 
   test('Edit pet', async () => {
+    await createPet(page, pages, 'PetName', '2016/06/07', { label: 'Goose', index: 400 });
+
     await test.step('Select the last pet in the list and click on the "Edit Pet" button', async () => {
       const editPetButtons = await pages.getOwnerDetailsPage().getEditPetButtons();
       await editPetButtons.last().click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Change the pet name to "PetName1"', async () => {
@@ -66,7 +68,7 @@ test.describe.serial('Check pet functionality', () => {
     await test.step('Click on the "Update Pet" button', async () => {
       const updatePetButton = await pages.getEditPetPage().getUpdatePetButton();
       await updatePetButton.click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify that the data of pet was changed', async () => {
@@ -81,7 +83,7 @@ test.describe.serial('Check pet functionality', () => {
     await test.step('Select the last pet in the list and click on the "Delete Pet" button', async () => {
       const deletePetButtons = await pages.getOwnerDetailsPage().getDeletePetButtons();
       await deletePetButtons.last().click();
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(2000);
     });
 
     await test.step('Verify that last vet was deleted', async () => {
